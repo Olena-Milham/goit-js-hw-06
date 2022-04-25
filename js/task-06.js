@@ -8,17 +8,30 @@
 //  which you can find in the task source files.
 
 const textInput = document.querySelector('#validation-input');
-textInput.addEventListener('blur', checkInputLength);
+
+// function checkInputLength(event) {
+//   if (
+//     event.currentTarget.value.length > Number(textInput.dataset.length) ||
+//     event.currentTarget.value.length < Number(textInput.dataset.length)
+//   ) {
+//     return textInput.classList.add('invalid');
+//   }
+//   return textInput.classList.replace('invalid', 'valid');
+// }
+
 function checkInputLength(event) {
+  const number = Number(textInput.dataset.length);
   if (
-    event.currentTarget.value.length > Number(textInput.dataset.length) ||
-    event.currentTarget.value.length < Number(textInput.dataset.length)
+    event.currentTarget.value.length !== number ||
+    event.currentTarget.value.length === 0
   ) {
     return textInput.classList.add('invalid');
   }
+
   return textInput.classList.replace('invalid', 'valid');
 }
 
+textInput.addEventListener('blur', checkInputLength);
 // ------------
 
 // event.currentTarget is the element on which
