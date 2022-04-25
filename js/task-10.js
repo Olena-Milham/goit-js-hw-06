@@ -20,13 +20,60 @@ function getRandomHexColor() {
 // Create a destroyBoxes() function that clears the contents
 // of div#boxes, thereby removing all created elements.
 
-
-function createBoxes(amount)
-function destroyBoxes()
-
 const refs = {
-  createBtn:document.querySelector('button[data-create]'),
+  createBtn: document.querySelector('button[data-create]'),
   destroyBtn: document.querySelector('button[data-destroy]'),
   divBoxes: document.querySelector('#boxes'),
-  numberinput: document.querySelector('input'),
+  numberInput: document.querySelector('input'),
+};
+
+function onButtonCreateBoxes() {
+  const boxes = createBoxes(refs.numberInput.value);
+  refs.divBoxes.append(...boxes);
 }
+
+function createBoxes(amount) {
+  const arrayBoxes = [];
+  for (let i = 1; i <= amount; i += 1) {
+    const element = document.createElement('div');
+    element.style.margin = 'auto';
+    // element.style.width = '30px';
+    // element.style.height = '30px';
+    element.style.width = `${20 + 10 * i}px`;
+    element.style.height = `${20 + 10 * i}px`;
+    // element.style.outline = '1px solid blue';
+    // refs.divBoxes.append(element);
+    element.style.backgroundColor = getRandomHexColor();
+    arrayBoxes.push(element);
+  }
+  return arrayBoxes;
+}
+
+// If you write an empty string to the innerHTML property,
+// the content of the element will be cleared.
+// This is an easy and quick way to delete all content.
+
+function destroyBoxes() {
+  refs.divBoxes.innerHTML = '';
+  // refs.divBoxes.remove();
+}
+
+refs.createBtn.addEventListener('click', onButtonCreateBoxes);
+refs.destroyBtn.addEventListener('click', destroyBoxes);
+
+// ----
+// clear input
+// data attribute + click + function
+// -----
+// function destroyBoxes()
+// // document.createElement('div');
+// element.after(el1, el2, ...)
+// // adds one or more elements after the element element.
+// divBoxes.remove();
+
+// -----
+// const button = document.querySelector(".my-button");
+// const handleClick = () => {
+//   console.log("Button was clicked");
+// };
+// button.addEventListener("click", handleClick);
