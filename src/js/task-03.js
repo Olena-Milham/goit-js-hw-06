@@ -12,3 +12,39 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
+
+// Write a script to create a gallery of images
+// from an array of data.There is a list, ul.gallery,
+// in HTML.
+
+// Use an array of objects images
+// to create < img > elements nested in <li>.
+// Use template strings and the insertAdjacentHTML() method
+// to create markup.
+
+// All gallery items must be added to DOM in one insert operation.
+// Add at least some gallery design with flexboxes or grids using CSS classes.
+
+// ul list/gallery
+// li item
+// a link
+//  div overlay
+//   img
+
+// ---------------
+const gallery = document.querySelector('.gallery');
+gallery.classList.add('list');
+
+const listCreation = images
+  .map(image => {
+    const list = `<li class="gallery__item">
+              <img
+                src="${image.url} "
+                alt="${image.alt}"
+               
+               />
+            </li>`;
+    return list;
+  })
+  .join('');
+gallery.insertAdjacentHTML('afterbegin', listCreation);
