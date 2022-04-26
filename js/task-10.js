@@ -27,11 +27,6 @@ const refs = {
   numberInput: document.querySelector('input'),
 };
 
-function onButtonCreateBoxes() {
-  const boxes = createBoxes(refs.numberInput.value);
-  refs.divBoxes.append(...boxes);
-}
-
 // module 6 video1 1h32m, 40m -2 options
 
 function createBoxes(amount) {
@@ -45,6 +40,11 @@ function createBoxes(amount) {
     arrayBoxes.push(element);
   }
   return arrayBoxes;
+}
+
+function onButtonCreateBoxes() {
+  const boxes = createBoxes(refs.numberInput.value);
+  refs.divBoxes.append(...boxes);
 }
 
 // If you write an empty string to the innerHTML property,
