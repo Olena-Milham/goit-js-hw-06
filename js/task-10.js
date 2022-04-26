@@ -32,17 +32,15 @@ function onButtonCreateBoxes() {
   refs.divBoxes.append(...boxes);
 }
 
+// module 6 video1 1h32m, 40m -2 options
+
 function createBoxes(amount) {
   const arrayBoxes = [];
   for (let i = 1; i <= amount; i += 1) {
     const element = document.createElement('div');
     element.style.margin = 'auto';
-    // element.style.width = '30px';
-    // element.style.height = '30px';
     element.style.width = `${20 + 10 * i}px`;
     element.style.height = `${20 + 10 * i}px`;
-    // element.style.outline = '1px solid blue';
-    // refs.divBoxes.append(element);
     element.style.backgroundColor = getRandomHexColor();
     arrayBoxes.push(element);
   }
@@ -61,9 +59,6 @@ function destroyBoxes() {
 refs.createBtn.addEventListener('click', onButtonCreateBoxes);
 refs.destroyBtn.addEventListener('click', destroyBoxes);
 
-// ----
-// clear input
-// data attribute + click + function
 // -----
 // function destroyBoxes()
 // // document.createElement('div');
@@ -77,3 +72,6 @@ refs.destroyBtn.addEventListener('click', destroyBoxes);
 //   console.log("Button was clicked");
 // };
 // button.addEventListener("click", handleClick);
+// ----
+// to clear input
+// data attribute + click + function
