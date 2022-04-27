@@ -24,40 +24,90 @@ const refs = {
   createBtn: document.querySelector('button[data-create]'),
   destroyBtn: document.querySelector('button[data-destroy]'),
   divBoxes: document.querySelector('#boxes'),
-  numberInput: document.querySelector('input'),
+  inputNumber: document.querySelector('input'),
 };
 
-// module 6 video1 1h32m, 40m -2 options
+// --------create---------------
 
-function createBoxes(amount) {
-  const arrayBoxes = [];
-  for (let i = 1; i <= amount; i += 1) {
-    const element = document.createElement('div');
-    element.style.margin = 'auto';
-    element.style.width = `${20 + 10 * i}px`;
-    element.style.height = `${20 + 10 * i}px`;
-    element.style.backgroundColor = getRandomHexColor();
-    arrayBoxes.push(element);
+let firstDivWidth = 20;
+let firstDivHeight = 20;
+
+function createBox(amount) {
+  amount = refs.inputNumber.value;
+
+  for (let i = 0; i < amount; i += 1) {
+    const newDiv = document.createElement('div');
+    if (firstDivWidth > newDiv.style.width) {
+      firstDivWidth += 10;
+      firstDivHeight += 10;
+    } else {
+      firstDivWidth = 20;
+      firstDivHeight = 20;
+      const firstDiv = document.createElement('div');
+      firstDiv.style.width = `${firstDivWidth}px`;
+      firstDiv.style.height = `${firstDivHeight}px`;
+      firstDiv.style.backgroundColor = getRandomHexColor();
+      console.log(`${firstDivHeight} alalalalalal`);
+      refs.divBoxes.append(firstDiv);
+    }
+    newDiv.style.width = `${firstDivWidth}px`;
+    newDiv.style.height = `${firstDivHeight}px`;
+    newDiv.style.backgroundColor = getRandomHexColor();
+    refs.divBoxes.append(newDiv);
+    console.log(newDiv);
+    console.log(newDiv.style.width);
+    console.log(newDiv.previousElementSibling);
   }
-  return arrayBoxes;
 }
 
-function onButtonCreateBoxes() {
-  const boxes = createBoxes(refs.numberInput.value);
-  refs.divBoxes.append(...boxes);
-}
+refs.createBtn.addEventListener('click', event => {
+  createBox(event);
+});
+// -----------destroy-----------------------
+refs.destroyBtn.addEventListener('click', () => {
+  for (let i = 0; i < refs.divBoxes.children.length; i++) {
+    console.log([i]);
+    refs.divBoxes.children[i].remove();
+    [i] = [i - 1];
+  }
+  firstDivHeight = 20;
+  firstDivWidth = 20;
+});
+
+// // module 6 video1 1h32m, 40m -2 options
+
+// function createBoxes(amount) {
+//   const arrayBoxes = [];
+//   for (let i = 1; i <= amount; i += 1) {
+//     const element = document.createElement('div');
+//     element.style.margin = 'auto';
+//     element.style.width = `${30 + 10 * i}px`;
+//     element.style.height = `${30 + 10 * i}px`;
+//     element.style.backgroundColor = getRandomHexColor();
+//     arrayBoxes.push(element);
+//   }
+//   return arrayBoxes;
+// }
+
+// function onButtonCreateBoxes() {
+//   const boxes = createBoxes(refs.numberInput.value);
+//   refs.divBoxes.append(...boxes);
+// }
 
 // If you write an empty string to the innerHTML property,
 // the content of the element will be cleared.
 // This is an easy and quick way to delete all content.
 
-function destroyBoxes() {
-  refs.divBoxes.innerHTML = '';
-  // refs.divBoxes.remove();
-}
+// function destroyBoxes() {
+//   refs.divBoxes.innerHTML = '';
+//   // refs.divBoxes.remove();
+// }
 
-refs.createBtn.addEventListener('click', onButtonCreateBoxes);
-refs.destroyBtn.addEventListener('click', destroyBoxes);
+// console.log(refs.divBoxes.children.length);
+// refs.destroyBtn.addEventListener('click', destroyBoxes);
+
+// refs.createBtn.addEventListener('click', onButtonCreateBoxes);
+// refs.destroyBtn.addEventListener('click', destroyBoxes);
 
 // -----
 // function destroyBoxes()
@@ -75,3 +125,7 @@ refs.destroyBtn.addEventListener('click', destroyBoxes);
 // ----
 // to clear input
 // data attribute + click + function
+
+// refs.createBtn.addEventListener('click', event => {
+//   createBox(event);
+// });
