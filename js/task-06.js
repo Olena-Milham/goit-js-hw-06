@@ -25,10 +25,14 @@ function checkInputLength(event) {
     event.currentTarget.value.length !== number ||
     event.currentTarget.value.length === 0
   ) {
-    return textInput.classList.add('invalid');
+    event.currentTarget.classList.add('invalid');
+    if (event.currentTarget.classList.contains('valid')) {
+      event.currentTarget.classList.remove('valid');
+    }
+  } else {
+    event.currentTarget.classList.remove('invalid');
+    event.currentTarget.classList.add('valid');
   }
-
-  return textInput.classList.replace('invalid', 'valid');
 }
 
 textInput.addEventListener('blur', checkInputLength);
@@ -60,4 +64,8 @@ textInput.addEventListener('blur', checkInputLength);
 
 // textInput.addEventListener('blur', () => {
 //   textInput.value = '';
+// });
+
+// text.classList.forEach(cls => {
+//   console.log(cls); // text, red, new-class
 // });
