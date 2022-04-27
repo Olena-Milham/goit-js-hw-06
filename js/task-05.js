@@ -9,7 +9,7 @@ const output = document.querySelector('#name-output');
 
 textInput.addEventListener('input', event => {
   if (null) {
-    return 'Anonymous';
+    return (output.textContent = 'Anonymous');
   }
   output.textContent = event.currentTarget.value;
 });
