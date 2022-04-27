@@ -13,5 +13,4 @@ const inputHandler = () => {
   const size = refs.scrollbarInput.value;
   refs.textSpan.style.fontSize = `${size}px`;
 };
-
-refs.scrollbarInput.addEventListener('change', inputHandler);
+refs.scrollbarInput.addEventListener('input', inputHandler);
