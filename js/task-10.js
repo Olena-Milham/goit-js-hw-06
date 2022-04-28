@@ -61,7 +61,7 @@ function createBox(amount) {
 }
 
 refs.createBtn.addEventListener('click', event => {
-  createBox(event);
+  createBox(refs.inputNumber);
 });
 // -----------destroy-----------------------
 refs.destroyBtn.addEventListener('click', () => {
